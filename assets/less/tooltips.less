@@ -3,10 +3,10 @@
 /**
  * Simple CSS3 Tooltips
  *
- * @author     soDEV.ch
- * @copyright  2013 soDEV.ch
+ * @author     Steve Ottoz
+ * @copyright  2014 dev.so
  * @license    MIT License http://opensource.org/licenses/MIT
- * @version    0.1.0
+ * @version    0.1.1
  * @link       https://github.com/soDEVch/CSS3-Tooltips
  */
 
@@ -39,6 +39,7 @@
     .transition(@t);
     z-index: 9999999999;
     text-shadow: none;
+    pointer-events: none;
   }
   &:after {
     content: attr(data-title);
