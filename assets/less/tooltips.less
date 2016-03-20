@@ -4,21 +4,22 @@
  * Simple CSS3 Tooltips
  *
  * @author     Steve Ottoz
- * @copyright  2014 dev.so
+ * @copyright  2016 Steve Ottoz
  * @license    MIT License http://opensource.org/licenses/MIT
- * @version    0.1.1
- * @link       https://github.com/soDEVch/CSS3-Tooltips
+ * @version    0.1.2
+ * @link       https://github.com/iamso/CSS3-Tooltips
  */
 
 .make-tooltip(
-							@tooltip-bg: rgba(0,0,0,0.8),			/* tooltip background and arrow color */
-              @tooltip-color: #fff,							/* tooltip text color */
-              @tooltip-arrow-length: 5px,				/* arrow length */
-              @tooltip-arrow-width: 4px,				/* arrow width/2 */
-              @tooltip-font-size: 12px,					/* font size */
-              @tooltip-arrow-distance: 3px,			/* distance from element for animation */
-              @tooltip-margin-animation: 0.1s,	/* duration of the margin animation */
-              @tooltip-opacity-animation: 0.1s	/* duration of the opacity animation */
+              @tooltip-bg: rgba(0,0,0,0.8),       /* tooltip background and arrow color */
+              @tooltip-color: #fff,               /* tooltip text color */
+              @tooltip-arrow-length: 5px,         /* arrow length */
+              @tooltip-arrow-width: 4px,          /* arrow width/2 */
+              @tooltip-font-size: 12px,           /* font size */
+              @tooltip-arrow-distance-start: 3px, /* distance from element before animation */
+              @tooltip-arrow-distance-stop: 3px,  /* distance from element after animation */
+              @tooltip-margin-animation: 0.1s,    /* duration of the margin animation */
+              @tooltip-opacity-animation: 0.1s    /* duration of the opacity animation */
 						) 
 {
 	position: relative;
@@ -61,24 +62,24 @@
 // Top Left  
   &.tl {
 		&:after {
-			margin: 0 0 (@tooltip-arrow-length+@tooltip-arrow-distance) -15px;
+			margin: 0 0 (@tooltip-arrow-length + @tooltip-arrow-distance-start) -15px;
 		}
 		&:before {
-			margin: 0 0 @tooltip-arrow-distance -@tooltip-arrow-width;
+			margin: 0 0 @tooltip-arrow-distance-start (-@tooltip-arrow-width);
 		}
   	&:hover,
 		&.show {
 		  &:after {
 		    bottom: 100%;
 		    left: 50%;		    
-		    margin: 0 0 @tooltip-arrow-length -15px;
+		    margin: 0 0 (@tooltip-arrow-length + @tooltip-arrow-distance-stop) -15px;
 		  }
 		  &:before {
 				border-width: @tooltip-arrow-length @tooltip-arrow-width 0 @tooltip-arrow-width;
 				border-color: @tooltip-bg transparent transparent transparent;
 		    bottom: 100%;
 		    left: 50%;
-		    margin: 0 0 0 -@tooltip-arrow-width;
+		    margin: 0 0 @tooltip-arrow-distance-stop (-@tooltip-arrow-width);
 		  }	
   	}
   }
@@ -86,10 +87,10 @@
 // Top
   &.t {
   	&:after {
-			margin: 0 0 (@tooltip-arrow-length+@tooltip-arrow-distance);
+			margin: 0 0 (@tooltip-arrow-length + @tooltip-arrow-distance-start);
 		}
 		&:before {
-			margin: 0 0 @tooltip-arrow-distance -@tooltip-arrow-width;
+			margin: 0 0 @tooltip-arrow-distance-start (-@tooltip-arrow-width);
 		}
   	&:hover,
 		&.show {
@@ -97,14 +98,14 @@
 		    bottom: 100%;
 		    left: 50%;
 		    .translate(-50%,0);
-		    margin: 0 0 @tooltip-arrow-length;
+		    margin: 0 0 (@tooltip-arrow-length + @tooltip-arrow-distance-stop);
 		  }
 		  &:before {
 				border-width: @tooltip-arrow-length @tooltip-arrow-width 0 @tooltip-arrow-width;
 				border-color: @tooltip-bg transparent transparent transparent;
 		    bottom: 100%;
 		    left: 50%;
-		    margin: 0 0 0 -@tooltip-arrow-width;
+		    margin: 0 0 @tooltip-arrow-distance-stop (-@tooltip-arrow-width);
 		  }	 
 		} 
   }
@@ -112,24 +113,24 @@
 // Top Right	
 	&.tr {
 		&:after {
-			margin: 0 -15px (@tooltip-arrow-length+@tooltip-arrow-distance) 0;
+			margin: 0 -15px (@tooltip-arrow-length + @tooltip-arrow-distance-start) 0;
 		}
 		&:before {
-			margin: 0 -@tooltip-arrow-width @tooltip-arrow-distance 0;
+			margin: 0 (-@tooltip-arrow-width) @tooltip-arrow-distance-start 0;
 		}
 		&:hover,
 		&.show {
 		  &:after {
 		    bottom: 100%;
 		    right: 50%;
-		    margin: 0 -15px @tooltip-arrow-length 0;
+		    margin: 0 -15px (@tooltip-arrow-length + @tooltip-arrow-distance-stop) 0;
 		  }
 		  &:before {
 				border-width: @tooltip-arrow-length @tooltip-arrow-width 0 @tooltip-arrow-width;
 				border-color: @tooltip-bg transparent transparent transparent;
 		    bottom: 100%;
 		    right: 50%;
-		    margin: 0 -@tooltip-arrow-width 0 0;
+		    margin: 0 (-@tooltip-arrow-width) @tooltip-arrow-distance-stop 0;
 		  }	
 		}
   }
@@ -137,10 +138,10 @@
 // Left  
   &.l {
 	  &:after {
-			margin: 0 (@tooltip-arrow-length+@tooltip-arrow-distance) 0 0;
+			margin: 0 (@tooltip-arrow-length + @tooltip-arrow-distance-start) 0 0;
 		}
 		&:before {
-			margin: -@tooltip-arrow-width @tooltip-arrow-distance 0 0;
+			margin: (-@tooltip-arrow-width) @tooltip-arrow-distance-start 0 0;
 		}
 		&:hover,
 		&.show {
@@ -148,14 +149,14 @@
 		    top: 50%;
 		    right: 100%;
 		    .translate(0,-50%);
-		    margin: 0 @tooltip-arrow-length 0 0;
+		    margin: 0 (@tooltip-arrow-length + @tooltip-arrow-distance-stop) 0 0;
 		  }
 		  &:before {
 				border-width: @tooltip-arrow-width 0 @tooltip-arrow-width @tooltip-arrow-length;
 				border-color: transparent transparent transparent @tooltip-bg;
 		    top: 50%;
 		    right: 100%;
-		    margin: -@tooltip-arrow-width 0 0 0;
+		    margin: (-@tooltip-arrow-width) @tooltip-arrow-distance-stop 0 0;
 		  }	  
 		}
   }
@@ -163,10 +164,10 @@
 // Right
   &.r {
 	  &:after {
-			margin: 0 0 0 (@tooltip-arrow-length+@tooltip-arrow-distance);
+			margin: 0 0 0 (@tooltip-arrow-length + @tooltip-arrow-distance-start);
 		}
 		&:before {
-			margin: -@tooltip-arrow-width 0 0 @tooltip-arrow-distance;
+			margin: (-@tooltip-arrow-width) 0 0 @tooltip-arrow-distance-start;
 		}
 		&:hover,
 		&.show {
@@ -174,14 +175,14 @@
 		    top: 50%;
 		    left: 100%;
 		    .translate(0,-50%);
-		    margin: 0 0 0 @tooltip-arrow-length;
+		    margin: 0 0 0 (@tooltip-arrow-length + @tooltip-arrow-distance-stop);
 		  }
 		  &:before {
 		  	border-width: @tooltip-arrow-width @tooltip-arrow-length @tooltip-arrow-width 0;
 				border-color: transparent @tooltip-bg transparent transparent;			
 		    top: 50%;
 		    left: 100%;
-		    margin: -@tooltip-arrow-width 0 0 0;
+		    margin: (-@tooltip-arrow-width) 0 0 @tooltip-arrow-distance-stop;
 		  }	 
 		}
   }
@@ -190,24 +191,24 @@
 // Bottom Left  
   &.bl {
 	  &:after {
-			margin: (@tooltip-arrow-length+@tooltip-arrow-distance) 0 0 -15px;
+			margin: (@tooltip-arrow-length + @tooltip-arrow-distance-start) 0 0 -15px;
 		}
 		&:before {
-			margin: @tooltip-arrow-distance 0 0 -@tooltip-arrow-width;
+			margin: @tooltip-arrow-distance-start 0 0 (-@tooltip-arrow-width);
 		}
 		&:hover,
 		&.show {
 		  &:after {
 		    top: 100%;
 		    left: 50%;
-		    margin: @tooltip-arrow-length 0 0 -15px;
+		    margin: (@tooltip-arrow-length + @tooltip-arrow-distance-stop) 0 0 -15px;
 		  }
 		  &:before {
 				border-width: 0 @tooltip-arrow-width @tooltip-arrow-length @tooltip-arrow-width;
 				border-color: transparent transparent @tooltip-bg transparent;
 		    top: 100%;
 		    left: 50%;
-		    margin: 0 0 0 -@tooltip-arrow-width;
+		    margin: @tooltip-arrow-distance-stop 0 0 (-@tooltip-arrow-width);
 		  }	
 		}
   }
@@ -215,10 +216,10 @@
 // Bottom
   &.b {
 	  &:after {
-			margin: (@tooltip-arrow-length+@tooltip-arrow-distance) 0 0;
+			margin: (@tooltip-arrow-length + @tooltip-arrow-distance-start) 0 0;
 		}
 		&:before {
-			margin: @tooltip-arrow-distance 0 0 -@tooltip-arrow-width;
+			margin: @tooltip-arrow-distance-start 0 0 (-@tooltip-arrow-width);
 		}
 		&:hover,
 		&.show {
@@ -226,14 +227,14 @@
 		    top: 100%;
 		    left: 50%;
 		    .translate(-50%,0);
-		    margin: @tooltip-arrow-length 0 0;
+		    margin: (@tooltip-arrow-length + @tooltip-arrow-distance-stop) 0 0;
 		  }
 		  &:before {
 				border-width: 0 @tooltip-arrow-width @tooltip-arrow-length @tooltip-arrow-width;
 				border-color: transparent transparent @tooltip-bg transparent;
 		    top: 100%;
 		    left: 50%;
-		    margin: 0 0 0 -@tooltip-arrow-width;
+		    margin: @tooltip-arrow-distance-stop 0 0 (-@tooltip-arrow-width);
 		  }
 		} 
   }
@@ -241,24 +242,24 @@
 // Bottom Right	
 	&.br {
 	  &:after {
-			margin: (@tooltip-arrow-length+@tooltip-arrow-distance) -15px 0 0;
+			margin: (@tooltip-arrow-length + @tooltip-arrow-distance-start) -15px 0 0;
 		}
 		&:before {
-			margin: @tooltip-arrow-distance -@tooltip-arrow-width 0 0;
+			margin: @tooltip-arrow-distance-start (-@tooltip-arrow-width) 0 0;
 		}
 		&:hover,
 		&.show {
 		  &:after {
 		    top: 100%;
 		    right: 50%;
-		    margin: @tooltip-arrow-length -15px 0 0;
+		    margin: (@tooltip-arrow-length + @tooltip-arrow-distance-stop) -15px 0 0;
 		  }
 		  &:before {
 				border-width: 0 @tooltip-arrow-width @tooltip-arrow-length @tooltip-arrow-width;
 				border-color: transparent transparent @tooltip-bg transparent;
 		    top: 100%;
 		    right: 50%;
-		    margin: 0 -@tooltip-arrow-width 0 0;
+		    margin: @tooltip-arrow-distance-stop (-@tooltip-arrow-width) 0 0;
 		  }	
 		}
   }
@@ -275,7 +276,8 @@
 								@tooltip-arrow-length: 5px, 
 								@tooltip-arrow-width: 4px, 
 								@tooltip-font-size: 12px, 
-								@tooltip-arrow-distance: 3px, 
+                @tooltip-arrow-distance-start: 3px, 
+								@tooltip-arrow-distance-stop: 0, 
 								@tooltip-margin-animation: 0.1s, 
 								@tooltip-opacity-animation: 0.1s
 							);

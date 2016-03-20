@@ -117,14 +117,15 @@
 	<p>The mixin has the following parameters: <em>(shown here with default values)</em></p>
 	<pre class="prettyprint lang-less">
 .make-tooltip(
-              @tooltip-bg: rgba(0,0,0,0.8),     // tooltip background and arrow color
-              @tooltip-color: #fff,             // tooltip text color
-              @tooltip-arrow-length: 5px,       // arrow length
-              @tooltip-arrow-width: 4px,        // arrow width/2
-              @tooltip-font-size: 12px,         // font size
-              @tooltip-arrow-distance: 3px,     // distance from element for animation
-              @tooltip-margin-animation: 0.1s,  // duration of the margin animation
-              @tooltip-opacity-animation: 0.1s  // duration of the opacity animation
+              @tooltip-bg: rgba(0,0,0,0.8),       // tooltip background and arrow color
+              @tooltip-color: #fff,               // tooltip text color
+              @tooltip-arrow-length: 5px,         // arrow length
+              @tooltip-arrow-width: 4px,          // arrow width/2
+              @tooltip-font-size: 12px,           // font size
+              @tooltip-arrow-distance-start: 3px, // distance from element for animation
+              @tooltip-arrow-distance-stop: 0px,  // distance from element for animation
+              @tooltip-margin-animation: 0.1s,    // duration of the margin animation
+              @tooltip-opacity-animation: 0.1s    // duration of the opacity animation
              );</pre>
 	<p>For the default look, call the mixin without parameters.</p>
 	<p>Check out <code>tooltips.less</code> for more details.</p>
@@ -132,7 +133,7 @@
 	<h2>License</h2>
 	<p>MIT License</p>
 	<footer>
-		&copy; 2013 soDEV.ch
+		&copy; 2016 Steve Ottoz
 	</footer>
 </section>
 	
